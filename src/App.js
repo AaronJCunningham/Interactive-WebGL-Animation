@@ -1,6 +1,15 @@
-import React, { useState } from 'react';
-import { Canvas, useFrame } from 'react-three-fiber';
+import React, { useState, useRef } from 'react';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+import { Canvas, extend, useFrame, useThree } from 'react-three-fiber';
 import { useSpring, a } from 'react-spring/three';
+
+extend({ OrbitControls });
+
+const Controls = () => {
+  const orbitRef = useRef();
+  const { camera, gl } = useThree();
+  return <orbitControls args={[camera, gl.domElement]} ref={orbitRef} />;
+};
 
 const Box = () => {
   const [hovered, setHovered] = useState(false);
